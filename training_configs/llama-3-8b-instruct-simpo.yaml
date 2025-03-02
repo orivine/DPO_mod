@@ -1,7 +1,7 @@
 # Model arguments
 # model_name_or_path: meta-llama/Meta-Llama-3-8B-Instruct
 model_name_or_path: /data02/LLMs/llama/llama3.2-1B-Instruct/LLM-Research/Llama-3___2-1B-Instruct
-torch_dtype: null   # 原null
+torch_dtype: null
 attn_implementation: flash_attention_2
 
 # Data training arguments
