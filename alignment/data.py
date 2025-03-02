@@ -213,12 +213,11 @@ def mix_datasets(
     for (ds, frac), ds_config in zip(dataset_mixer.items(), configs):
         fracs.append(frac)
         for split in splits:
+            dataset_path = os.path.join(ds, split) if os.path.isdir(os.path.join(ds, split)) else ds
             try:
-                # Try first if dataset on a Hub repo
+                dataset = load_from_disk(dataset_path)
+            except:
                 dataset = load_dataset(ds, ds_config, split=split)
-            except DatasetGenerationError:
-                # If not, check local dataset
-                dataset = load_from_disk(os.path.join(ds, split))
 
             # Remove redundant columns to avoid schema conflicts on load
             dataset = dataset.remove_columns([col for col in dataset.column_names if col not in columns_to_keep])
